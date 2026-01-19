@@ -45,8 +45,6 @@ This project was created as part of _nology's trainning to demonstrate proficien
 
 ## Pseudocode 
 
-### STEP 1: User Opens Game
-
 1. User opens index.html in browser.
 2. Browser loads interface, which displays "Guess Who?", score board, etc.
 3. User starts the game by clicking on button of "Play".
@@ -67,5 +65,6 @@ This project was created as part of _nology's trainning to demonstrate proficien
 
 ## Git commits - changelog
 
-1. Name: Link:
-2. Name: Link:
+1. Date: 19/01/2026 Name: Initial commit Link: https://github.com/nikomakr/Guess-Who-JS-Game/commit/88c439783d1273457e8633d37df22bf8c30bc79e
+2. Date: 19/01/2026 Name: created and drafted README file including pseudocode Link: https://github.com/nikomakr/Guess-Who-JS-Game/commit/4b5d52c60c5b19ce8192ad66744a6b91b94b9067
+3. Date: Name: Link: 
