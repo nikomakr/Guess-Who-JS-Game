@@ -2,7 +2,22 @@
 Guess Who? game reimagined for the web. Originally created by Ora and Theo Coster (Theora Design, 1979), licensed by Milton Bradley (Hasbro nowadays). Built with vanilla JavaScript, HTML and CSS as second project for _nology's training to become Full-Stack Engineer. Ask strategic questions to identify the mystery character from 24 options.
 
 ## Table of Contents
-???
+
+- [Game Overview](#-game-overview)
+- [Features](#-features)
+- [Demo](#-demo)
+- [How to Play](#-how-to-play)
+- [Getting Started](#-getting-started)
+- [Project Structure](#-project-structure)
+- [Design Features](#-design-features)
+- [Technologies Used](#️-technologies-used)
+- [Documentation](#-documentation)
+- [Future Enhancements](#-future-enhancements)
+- [Contributing](#-contributing)
+- [Changelog](#-changelog)
+- [License](#-license)
+- [Author](#-author)
+- [Acknowledgements](#-acknowledgements)
 
 ##  Game Overview
 
@@ -17,7 +32,12 @@ This project was created as part of _nology's trainning to demonstrate proficien
 - Version control with Git
 
 ##  Technologies Used
-???
+
+- Vanilla JavaScript programming
+- DOM manipulation and event handling
+- Responsive web design
+- Game logic implementation
+- Version control with Git
 
 ##  Features
 
@@ -67,4 +87,16 @@ This project was created as part of _nology's trainning to demonstrate proficien
 
 1. Date: 19/01/2026 Name: Initial commit Link: https://github.com/nikomakr/Guess-Who-JS-Game/commit/88c439783d1273457e8633d37df22bf8c30bc79e
 2. Date: 19/01/2026 Name: created and drafted README file including pseudocode Link: https://github.com/nikomakr/Guess-Who-JS-Game/commit/4b5d52c60c5b19ce8192ad66744a6b91b94b9067
-3. Date: Name: Link: 
+3. Date: 19/01/2026 Name: created and drafted README file including pseudocode vol2 Link: https://github.com/nikomakr/Guess-Who-JS-Game/commit/cbf8b4d4e98df517b9a1329d6357bb3e378afaf2
+4. Date: 20/01/2026 Name: Link: 
+
+
+##  Author
+
+Created as part of the **[_nology](https://nology.io/)** coding traineeship programme - Second project demonstrating JavaScript proficiency and game development skills.
+
+##  Acknowledgements
+
+- **_nology** for the coding traineership programme opportunity
+- **Classic Guess Who?** game by Ora & Theo Coster (Theora Design, 1979), licensed by Milton Bradley (now Hasbro)
+- **Google Fonts** for Crimson Pro and DM Mono typefaces
