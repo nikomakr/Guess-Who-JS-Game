@@ -88,7 +88,9 @@ This project was created as part of _nology's trainning to demonstrate proficien
 1. Date: 19/01/2026 Name: Initial commit Link: https://github.com/nikomakr/Guess-Who-JS-Game/commit/88c439783d1273457e8633d37df22bf8c30bc79e
 2. Date: 19/01/2026 Name: created and drafted README file including pseudocode Link: https://github.com/nikomakr/Guess-Who-JS-Game/commit/4b5d52c60c5b19ce8192ad66744a6b91b94b9067
 3. Date: 19/01/2026 Name: created and drafted README file including pseudocode vol2 Link: https://github.com/nikomakr/Guess-Who-JS-Game/commit/cbf8b4d4e98df517b9a1329d6357bb3e378afaf2
-4. Date: 20/01/2026 Name: Link: 
+4. Date: 20/01/2026 Name: HTML skeleton built, stats bar added, buttons, score, basic scs
+s written, work in progress on script with characters creation Link: https://github.com/nikomakr/Guess-Who-JS-Game/commit/169ad785f6f049b93294c06f381df259ad7ea877
+5. Date: 21/01/2026 Name: Link: 
 
 
 ##  Author
