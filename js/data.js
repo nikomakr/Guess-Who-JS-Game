@@ -3,6 +3,7 @@ const characters = [
     id: 1,
     name: "Dimitris",
     emoji: "👨‍💼",
+    avatarURL: "images/dimitris.jpeg",
     traits: {
       glasses: true,
       hat: false,
@@ -14,6 +15,7 @@ const characters = [
     id: 2,
     name: "Maria",
     emoji: "👩‍🦰",
+    avatarURL: "images/maria.jpeg",
     traits: {
       glasses: false,
       hat: true,
@@ -25,6 +27,7 @@ const characters = [
     id: 3,
     name: "Nikos",
     emoji: "👨‍🎨",
+    avatarURL: "images/nikos.jpeg",
     traits: {
       glasses: true,
       hat: true,
@@ -36,6 +39,7 @@ const characters = [
     id: 4,
     name: "Sofia",
     emoji: "👩‍🔬",
+    avatarURL: "images/sofia.jpeg",
     traits: {
       glasses: true,
       hat: false,
@@ -47,6 +51,7 @@ const characters = [
     id: 5,
     name: "Giorgos",
     emoji: "👨‍🍳",
+    avatarURL: "images/giorgos.jpeg",
     traits: {
       glasses: false,
       hat: true,
@@ -58,6 +63,7 @@ const characters = [
     id: 6,
     name: "Eleni",
     emoji: "👩‍💻",
+    avatarURL: "images/eleni.jpeg",
     traits: {
       glasses: true,
       hat: false,
@@ -69,6 +75,7 @@ const characters = [
     id: 7,
     name: "Kostas",
     emoji: "👨‍⚕️",
+    avatarURL: "images/kostas.jpeg",
     traits: {
       glasses: false,
       hat: false,
@@ -80,6 +87,7 @@ const characters = [
     id: 8,
     name: "Anna",
     emoji: "👩‍🏫",
+    avatarURL: "images/anna.jpeg",
     traits: {
       glasses: false,
       hat: true,
@@ -91,6 +99,7 @@ const characters = [
     id: 9,
     name: "Panagiotis",
     emoji: "👨‍🔧",
+    avatarURL: "images/panagiotis.jpeg",
     traits: {
       glasses: true,
       hat: false,
@@ -102,6 +111,7 @@ const characters = [
     id: 10,
     name: "Katerina",
     emoji: "👩‍🎤",
+    avatarURL: "images/katerina.jpeg",
     traits: {
       glasses: false,
       hat: false,
@@ -113,6 +123,7 @@ const characters = [
     id: 11,
     name: "Yannis",
     emoji: "👨‍🚀",
+    avatarURL: "images/yannis.jpeg",
     traits: {
       glasses: false,
       hat: true,
@@ -124,6 +135,7 @@ const characters = [
     id: 12,
     name: "Vasiliki",
     emoji: "👩‍⚖️",
+    avatarURL: "images/vasiliki.jpeg",
     traits: {
       glasses: true,
       hat: true,
@@ -135,6 +147,7 @@ const characters = [
     id: 13,
     name: "Michalis",
     emoji: "👨‍🌾",
+    avatarURL: "images/michalis.jpeg",
     traits: {
       glasses: false,
       hat: false,
@@ -146,6 +159,7 @@ const characters = [
     id: 14,
     name: "Despina",
     emoji: "👩‍🎨",
+    avatarURL: "images/despina.jpeg",
     traits: {
       glasses: true,
       hat: false,
@@ -157,6 +171,7 @@ const characters = [
     id: 15,
     name: "Alexandros",
     emoji: "👨‍🎓",
+    avatarURL: "images/alexandros.jpeg",
     traits: {
       glasses: true,
       hat: true,
@@ -168,6 +183,7 @@ const characters = [
     id: 16,
     name: "Ioanna",
     emoji: "👩‍🔬",
+    avatarURL: "images/ioanna.jpeg",
     traits: {
       glasses: false,
       hat: true,
@@ -179,6 +195,7 @@ const characters = [
     id: 17,
     name: "Christos",
     emoji: "👨‍💻",
+    avatarURL: "images/christos.jpeg",
     traits: {
       glasses: false,
       hat: false,
@@ -190,6 +207,7 @@ const characters = [
     id: 18,
     name: "Fotini",
     emoji: "👩‍🌾",
+    avatarURL: "images/fotini.jpeg",
     traits: {
       glasses: true,
       hat: false,
@@ -201,6 +219,7 @@ const characters = [
     id: 19,
     name: "Stavros",
     emoji: "👨‍🏫",
+    avatarURL: "images/stavros.jpeg",
     traits: {
       glasses: false,
       hat: true,
@@ -212,6 +231,7 @@ const characters = [
     id: 20,
     name: "Antonia",
     emoji: "👩‍✈️",
+    avatarURL: "images/antonia.jpeg",
     traits: {
       glasses: false,
       hat: false,
@@ -223,6 +243,7 @@ const characters = [
     id: 21,
     name: "Petros",
     emoji: "👨‍🚒",
+    avatarURL: "images/petros.jpeg",
     traits: {
       glasses: true,
       hat: false,
@@ -234,6 +255,7 @@ const characters = [
     id: 22,
     name: "Zoe",
     emoji: "👩‍🍳",
+    avatarURL: "images/zoe.jpeg",
     traits: {
       glasses: false,
       hat: true,
@@ -245,6 +267,7 @@ const characters = [
     id: 23,
     name: "Andreas",
     emoji: "👨‍🎤",
+    avatarURL: "images/andreas.jpeg",
     traits: {
       glasses: true,
       hat: true,
@@ -256,6 +279,7 @@ const characters = [
     id: 24,
     name: "Chrysa",
     emoji: "👩‍🚒",
+    avatarURL: "images/chrysa.jpeg",
     traits: {
       glasses: false,
       hat: false,
@@ -264,7 +288,3 @@ const characters = [
     },
   },
 ];
-
-//Emojies are not accurate to character's traits, so potential solutions:
-//1: API https://www.dicebear.com/
-//2: JS https://github.com/multiavatar/Multiavatar

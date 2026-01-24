@@ -171,6 +171,18 @@ header {
 .character-avatar {
     font-size: 3rem;
     margin-bottom: 10px;
+    
+    .avatar-image {
+        width: 100%;
+        max-width: 120px;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 3px solid $border-color;
+        background: #f0f0f0;
+        display: block;
+        margin: 0 auto;
+    }
 }
 
 .character-name {

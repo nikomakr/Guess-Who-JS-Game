@@ -1,6 +1,8 @@
 const gameState = {
   mysteryCharacter: null,
   questionsAsked: 0,
+  maxQuestions: 4,
+  askedTraits: [],
   charactersEliminated: 0,
   activeCharacters: [],
   gameOver: false,
@@ -33,15 +35,17 @@ function renderCharacters() {
     }
 
     card.innerHTML = `
-            <div class="character-avatar">${character.emoji}</div>
-            <h3 class="character-name">${character.name}</h3>
-            <ul class="character-traits">
-                <li>👓 Glasses: ${character.traits.glasses ? "Yes" : "No"}</li>
-                <li>🎩 Hat: ${character.traits.hat ? "Yes" : "No"}</li>
-                <li>🧔 Beard: ${character.traits.beard ? "Yes" : "No"}</li>
-                <li>😊 Smile: ${character.traits.smile ? "Yes" : "No"}</li>
-            </ul>
-        `;
+      <div class="character-avatar">
+          <img src="${character.avatarURL}" alt="${character.name}" class="avatar-image">
+      </div>
+      <h3 class="character-name">${character.name}</h3>
+      <ul class="character-traits">
+          <li>👓 Glasses: ${character.traits.glasses ? "Yes" : "No"}</li>
+          <li>🎩 Hat: ${character.traits.hat ? "Yes" : "No"}</li>
+          <li>🧔 Beard: ${character.traits.beard ? "Yes" : "No"}</li>
+          <li>😊 Smile: ${character.traits.smile ? "Yes" : "No"}</li>
+      </ul>
+    `;
 
     card.addEventListener("click", () => {
       if (!isEliminated && !gameState.gameOver) {
@@ -58,12 +62,19 @@ function initGame() {
   gameState.mysteryCharacter = characters[randomIndex];
 
   gameState.questionsAsked = 0;
+  gameState.askedTraits = [];
   gameState.charactersEliminated = 0;
   gameState.activeCharacters = [...characters];
   gameState.gameOver = false;
 
   updateStats();
   renderCharacters();
+
+  questionButtons.forEach((button) => {
+    button.disabled = false;
+    button.classList.remove("asked");
+    button.classList.remove("disabled");
+  });
 
   if (gameOverModal) {
     gameOverModal.classList.add("hidden");
@@ -73,50 +84,74 @@ function initGame() {
 }
 
 function updateStats() {
-  questionsAskedEl.textContent = gameState.questionsAsked;
+  questionsAskedEl.textContent = `${gameState.questionsAsked}/${gameState.maxQuestions}`;
   charactersLeftEl.textContent = gameState.activeCharacters.length;
 }
-
-function makeGuess(character) {
-  console.log("You clicked on:", character.name);
-}
-
-initGame();
 
 function askQuestion(trait) {
   if (gameState.gameOver) {
     return;
   }
 
-gameState.questionsAsked++;
+  if (gameState.askedTraits.includes(trait)) {
+    console.log("Question already asked!");
+    return;
+  }
 
-const answer = gameState.mysteryCharacter.traits[trait];
+  if (gameState.questionsAsked >= gameState.maxQuestions) {
+    console.log("Maximum questions reached!");
+    return;
+  }
 
-if (answer === true) {
-  gameState.activeCharacters = gameState.activeCharacters.filter(
-    character => character.traits[trait] === true
-  );
-} else {
-  gameState.activeCharacters = gameState.activeCharacters.filter(
-    character => character.traits[trait] === false
+  gameState.questionsAsked++;
+  gameState.askedTraits.push(trait);
+
+  const answer = gameState.mysteryCharacter.traits[trait];
+
+  if (answer === true) {
+    gameState.activeCharacters = gameState.activeCharacters.filter(
+      (character) => character.traits[trait] === true,
+    );
+  } else {
+    gameState.activeCharacters = gameState.activeCharacters.filter(
+      (character) => character.traits[trait] === false,
+    );
+  }
+
+  gameState.charactersEliminated =
+    characters.length - gameState.activeCharacters.length;
+
+  showFeedback(answer, trait);
+  updateStats();
+  updateQuestionButtons();
+  renderCharacters();
+
+  console.log(`Question asked: ${trait}`);
+  console.log(`Answer: ${answer ? "YES" : "NO"}`);
+  console.log(`Characters left: ${gameState.activeCharacters.length}`);
+  console.log(
+    `Questions remaining: ${gameState.maxQuestions - gameState.questionsAsked}`,
   );
 }
 
-gameState.charactersEliminated = characters.length - gameState.activeCharacters.length;
+function updateQuestionButtons() {
+  questionButtons.forEach((button) => {
+    const trait = button.getAttribute("data-trait");
 
-showFeedback(answer, trait);
+    if (gameState.askedTraits.includes(trait)) {
+      button.disabled = true;
+      button.classList.add("asked");
+    }
 
-updateStats();
-
-renderCharacters();
-
-console.log(`Question asked: ${trait}`);
-console.log(`Answer: ${answer ? 'YES' : 'NO'}`);
-console.log(`Characters left: ${gameState.activeCharacters.length}`);
+    if (gameState.questionsAsked >= gameState.maxQuestions) {
+      button.disabled = true;
+      button.classList.add("disabled");
+    }
+  });
 }
 
 function showFeedback(answer, trait) {
-  console.log(`Feedback: ${answer ? 'YES' : 'NO'} for ${trait}`);
+  console.log(`Feedback: ${answer ? "YES" : "NO"} for ${trait}`);
 }
 
 function makeGuess(character) {
@@ -137,26 +172,28 @@ function makeGuess(character) {
 
 function showGameOver(isCorrect, guessedCharacter) {
   if (isCorrect) {
-    modalTitle.textContent = 'Bravo! You won!';
+    modalTitle.textContent = "Bravo! You won!";
     modalMessage.textContent = `Congrats! You correctly guessed ${guessedCharacter.name}!`;
   } else {
-    modalTitle.textContent = 'Oh no. Wrong guess!';
+    modalTitle.textContent = "Oh no. Wrong guess!";
     modalMessage.textContent = `I am sorry, mystery character was ${gameState.mysteryCharacter.name}. Better luck next time!`;
   }
 
   modalQuestions.textContent = gameState.questionsAsked;
   modalEliminated.textContent = gameState.charactersEliminated;
 
-  gameOverModal.classList.remove('hidden');
+  gameOverModal.classList.remove("hidden");
 }
 
 questionButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    const trait = button.getAttribute('data-trait');
+  button.addEventListener("click", () => {
+    const trait = button.getAttribute("data-trait");
     askQuestion(trait);
   });
 });
 
-playAgainBtn.addEventListener('click', () => {
+playAgainBtn.addEventListener("click", () => {
   initGame();
 });
+
+initGame();
