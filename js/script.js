@@ -82,3 +82,81 @@ function makeGuess(character) {
 }
 
 initGame();
+
+function askQuestion(trait) {
+  if (gameState.gameOver) {
+    return;
+  }
+
+gameState.questionsAsked++;
+
+const answer = gameState.mysteryCharacter.traits[trait];
+
+if (answer === true) {
+  gameState.activeCharacters = gameState.activeCharacters.filter(
+    character => character.traits[trait] === true
+  );
+} else {
+  gameState.activeCharacters = gameState.activeCharacters.filter(
+    character => character.traits[trait] === false
+  );
+}
+
+gameState.charactersEliminated = characters.length - gameState.activeCharacters.length;
+
+showFeedback(answer, trait);
+
+updateStats();
+
+renderCharacters();
+
+console.log(`Question asked: ${trait}`);
+console.log(`Answer: ${answer ? 'YES' : 'NO'}`);
+console.log(`Characters left: ${gameState.activeCharacters.length}`);
+}
+
+function showFeedback(answer, trait) {
+  console.log(`Feedback: ${answer ? 'YES' : 'NO'} for ${trait}`);
+}
+
+function makeGuess(character) {
+  if (gameState.gameOver) {
+    return;
+  }
+
+  gameState.gameOver = true;
+
+  const isCorrect = character.id === gameState.mysteryCharacter.id;
+
+  showGameOver(isCorrect, character);
+
+  console.log(`You guessed: ${character.name}`);
+  console.log(`Mystery was: ${gameState.mysteryCharacter.name}`);
+  console.log(`Correct: ${isCorrect}`);
+}
+
+function showGameOver(isCorrect, guessedCharacter) {
+  if (isCorrect) {
+    modalTitle.textContent = 'Bravo! You won!';
+    modalMessage.textContent = `Congrats! You correctly guessed ${guessedCharacter.name}!`;
+  } else {
+    modalTitle.textContent = 'Oh no. Wrong guess!';
+    modalMessage.textContent = `I am sorry, mystery character was ${gameState.mysteryCharacter.name}. Better luck next time!`;
+  }
+
+  modalQuestions.textContent = gameState.questionsAsked;
+  modalEliminated.textContent = gameState.charactersEliminated;
+
+  gameOverModal.classList.remove('hidden');
+}
+
+questionButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const trait = button.getAttribute('data-trait');
+    askQuestion(trait);
+  });
+});
+
+playAgainBtn.addEventListener('click', () => {
+  initGame();
+});
