@@ -1,6 +1,10 @@
 # Guess-Who-JS-Game
 Guess Who? game reimagined for the web. Originally created by Ora and Theo Coster (Theora Design, 1979), licensed by Milton Bradley (Hasbro nowadays). Built with vanilla JavaScript, HTML and CSS as second project for _nology's training to become Full-Stack Engineer. Ask strategic questions to identify the mystery character from 24 options.
 
+## GIF - demonstration of game
+
+![Guess Who Game Demo](demo/game-demo.gif)
+
 ## Table of Contents
 
 - [Game Overview](#-game-overview)
@@ -193,7 +197,10 @@ This is primarily an educational project, but suggestions and feedback are welco
 s written, work in progress on script with characters creation Commit Link: https://github.com/nikomakr/Guess-Who-JS-Game/commit/169ad785f6f049b93294c06f381df259ad7ea877
 5. Date: 21/01/2026 Commit Message: split data.js script.js into files fixed script loading added randomiser for character made dynamic grid by displaying characters added click eventlistener console clicks user makes Commit Link: https://github.com/nikomakr/Guess-Who-JS-Game/commit/f89136740cbe21eda9568420c6d2d2c85944df87
 6. Date: 24/01/2026 Commit Message: Yesterdays work… Completed game logic with filtering, stats updating, and modal. Implemented questions filtering, characters rendering, and guess validation. Added event handlers for buttons and final guess click events. Created gameOver modal with win/lose popup and restart functionality. Added HTML modal structure and fixed button data-trait values. QA tested and fixed everything, verified correct coloured/grey character filtering. Commit Link: https://github.com/nikomakr/Guess-Who-JS-Game/commit/a13cafd753ff6c829cb07dd9e4274390a5b47cbe
-7. Date: 24/01/2026 Commit Message: Commit Link:
+7. Date: 24/01/2026 Commit Message: Tested multiple APIs but not possible to match with specific traits per character. So, left it. Replaced emojis with bing AI avatars manually created one by one. Small updates in scss, data, structure of files. Limited into 4 questions in stats and only one click per each button per game round to be allowed/count. I broke it and I just fixed the game to properly render characters. Finalised README.
+Commit Link: https://github.com/nikomakr/Guess-Who-JS-Game/commit/abc6e8b12aa1a290f4aefc72b17e0897fc9e7564
+8. Date: 25/01/2026 Commit Message: GIF created & added to file structure. README updated. Bug found and opened issue #2 Commit Link: 
+
 
 ## License
 
