@@ -104,7 +104,7 @@ const characters = [
       glasses: true,
       hat: false,
       beard: true,
-      smile: false,
+      smile: true,
     },
   },
   {
@@ -162,7 +162,7 @@ const characters = [
     avatarURL: "images/despina.jpeg",
     traits: {
       glasses: true,
-      hat: false,
+      hat: true,
       beard: false,
       smile: true,
     },
@@ -271,7 +271,7 @@ const characters = [
     traits: {
       glasses: true,
       hat: true,
-      beard: true,
+      beard: false,
       smile: false,
     },
   },
@@ -284,7 +284,7 @@ const characters = [
       glasses: false,
       hat: false,
       beard: false,
-      smile: false,
+      smile: true,
     },
   },
 ];

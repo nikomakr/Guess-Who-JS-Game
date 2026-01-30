@@ -19,6 +19,21 @@ const modalQuestions = document.getElementById("modal-questions");
 const modalEliminated = document.getElementById("modal-eliminated");
 const playAgainBtn = document.getElementById("play-again");
 
+function playSound(type) {
+  const audio = new Audio();
+  
+  if (type === 'win') {
+    audio.src = 'https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3';
+  } else if (type === 'lose') {
+    audio.src = 'https://assets.mixkit.co/active_storage/sfx/2955/2955-preview.mp3';
+  }
+  
+  audio.volume = 0.3;
+  audio.play().catch(err => {
+    console.log('Sound play failed:', err);
+  });
+}
+
 function renderCharacters() {
   characterGrid.innerHTML = "";
 
@@ -80,7 +95,7 @@ function initGame() {
     gameOverModal.classList.add("hidden");
   }
 
-  console.log("Mystery Character:", gameState.mysteryCharacter.name);
+  // console.log("Mystery Character:", gameState.mysteryCharacter.name); // Leaving here for the moment for testing purposes.
 }
 
 function updateStats() {
@@ -151,7 +166,42 @@ function updateQuestionButtons() {
 }
 
 function showFeedback(answer, trait) {
-  console.log(`Feedback: ${answer ? "YES" : "NO"} for ${trait}`);
+  const feedbackEl = document.getElementById("feedback");
+
+  feedbackEl.classList.remove("show", "yes", "no");
+
+  const traitNames = {
+    glasses: "glasses",
+    hat: "a hat",
+    beard: "a beard",
+    smile: "smiling",
+  };
+
+  const icon = answer ? "✅" : "❌";
+  const yesNo = answer ? "YES!" : "NO.";
+  const hasOrNot = answer ? "has" : "doesn't have";
+  const traitName = traitNames[trait] || trait;
+
+  let message;
+  if (trait === "smile") {
+    message = answer
+      ? `${icon} ${yesNo} The mystery character is smiling.`
+      : `${icon} ${yesNo} The mystery character is not smiling.`;
+  } else {
+    message = `${icon} ${yesNo} The mystery character ${hasOrNot} ${traitName}.`;
+  }
+
+  feedbackEl.textContent = message;
+
+  feedbackEl.classList.add(answer ? "yes" : "no");
+
+  setTimeout(() => {
+    feedbackEl.classList.add("show");
+  }, 50);
+
+  setTimeout(() => {
+    feedbackEl.classList.remove("show");
+  }, 3000);
 }
 
 function makeGuess(character) {
@@ -174,9 +224,11 @@ function showGameOver(isCorrect, guessedCharacter) {
   if (isCorrect) {
     modalTitle.textContent = "Bravo! You won!";
     modalMessage.textContent = `Congrats! You correctly guessed ${guessedCharacter.name}!`;
+    playSound('win');
   } else {
     modalTitle.textContent = "Oh no. Wrong guess!";
     modalMessage.textContent = `I am sorry, mystery character was ${gameState.mysteryCharacter.name}. Better luck next time!`;
+    playSound('lose');
   }
 
   modalQuestions.textContent = gameState.questionsAsked;

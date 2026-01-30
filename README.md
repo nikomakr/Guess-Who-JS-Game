@@ -199,8 +199,15 @@ s written, work in progress on script with characters creation Commit Link: http
 6. Date: 24/01/2026 Commit Message: Yesterdays work… Completed game logic with filtering, stats updating, and modal. Implemented questions filtering, characters rendering, and guess validation. Added event handlers for buttons and final guess click events. Created gameOver modal with win/lose popup and restart functionality. Added HTML modal structure and fixed button data-trait values. QA tested and fixed everything, verified correct coloured/grey character filtering. Commit Link: https://github.com/nikomakr/Guess-Who-JS-Game/commit/a13cafd753ff6c829cb07dd9e4274390a5b47cbe
 7. Date: 24/01/2026 Commit Message: Tested multiple APIs but not possible to match with specific traits per character. So, left it. Replaced emojis with bing AI avatars manually created one by one. Small updates in scss, data, structure of files. Limited into 4 questions in stats and only one click per each button per game round to be allowed/count. I broke it and I just fixed the game to properly render characters. Finalised README.
 Commit Link: https://github.com/nikomakr/Guess-Who-JS-Game/commit/abc6e8b12aa1a290f4aefc72b17e0897fc9e7564
-8. Date: 25/01/2026 Commit Message: GIF created & added to file structure. README updated. Bug found and opened issue #2 Commit Link: 
+8. Date: 25/01/2026 Commit Message: GIF created & added to file structure. README updated. Bug found and opened issue #2 Commit Link: https://github.com/nikomakr/Guess-Who-JS-Game/commit/e5e0330acafaf969faedc6c5a6fd39b522c7c2a7
+9. Date: 30/01/2026 Commit Message: feat: Final polish - feedback animations, sounds, and character balancing
 
+- Visual YES/NO feedback with green/red animations
+- Win/loss sound effects
+- Hide mystery character from console
+- Balance all 24 characters (2+ options guaranteed)
+- Regenerate 4 avatars to match new traits
+Commit Link: 
 
 ## License
 

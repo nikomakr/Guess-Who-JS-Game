@@ -15,7 +15,7 @@ $card-padding: 15px;
 }
 
 body {
-    font-family: 'Orbitron', 'Rajdhani', 'Exo 2', sans-serif; // backed it up from fonts.googleapis.com
+    font-family: 'Orbitron', 'Rajdhani', 'Exo 2', sans-serif;
     background-color: $background-color;
     color: $primary-color;
     line-height: 1.6;
@@ -110,6 +110,59 @@ header {
     
     &:active {
         transform: scale(0.98);
+    }
+    
+    // Styling for asked/disabled buttons
+    &.asked,
+    &:disabled {
+        background: #95a5a6;
+        color: #ecf0f1;
+        cursor: not-allowed;
+        opacity: 0.6;
+        
+        &:hover {
+            background: #95a5a6;
+            transform: none;
+        }
+    }
+}
+
+// ========================================
+// FEEDBACK ANIMATION
+// ========================================
+.feedback {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    // When feedback is shown
+    &.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    // YES feedback (green)
+    &.yes {
+        background: #d4edda;
+        border: 2px solid #28a745;
+        color: #155724;
+    }
+    
+    // NO feedback (red)
+    &.no {
+        background: #f8d7da;
+        border: 2px solid #dc3545;
+        color: #721c24;
     }
 }
 
