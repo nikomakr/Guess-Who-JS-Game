@@ -57,7 +57,7 @@ header {
     background: $card-bg;
     padding: 15px;
     border-radius: 8px;
-    margin-bottom: 20px;
+    margin-bottom: 2px;
     border: 2px solid $border-color;
     
     .stat {
@@ -80,10 +80,13 @@ header {
 // QUESTION SECTION
 // ========================================
 .question-section {
-    margin-bottom: 30px;
+    margin-bottom: 0.1px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     
     h2 {
-        margin-bottom: 15px;
+        margin-bottom: 8px;
+        text-align: center;
     }
 }
 
@@ -95,7 +98,7 @@ header {
 }
 
 .question-btn {
-    background: #3498db;
+    background: #8fbc8f;
     color: white;
     border: none;
     padding: 12px 20px;
@@ -105,14 +108,13 @@ header {
     transition: background 0.3s ease;
     
     &:hover {
-        background: #2980b9;
+        background: #7aa67a;
     }
     
     &:active {
         transform: scale(0.98);
     }
     
-    // Styling for asked/disabled buttons
     &.asked,
     &:disabled {
         background: #95a5a6;
@@ -131,34 +133,31 @@ header {
 // FEEDBACK ANIMATION
 // ========================================
 .feedback {
-    margin-top: 20px;
-    padding: 20px;
-    border-radius: 8px;
+    margin-top: 1px;
+    padding: 5px;
+    border-radius: 2px;
     text-align: center;
     font-size: 1.2rem;
     font-weight: bold;
     opacity: 0;
     transform: translateY(-10px);
     transition: all 0.3s ease;
-    min-height: 60px;
+    min-height: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
     
-    // When feedback is shown
     &.show {
         opacity: 1;
         transform: translateY(0);
     }
     
-    // YES feedback (green)
     &.yes {
         background: #d4edda;
         border: 2px solid #28a745;
         color: #155724;
     }
     
-    // NO feedback (red)
     &.no {
         background: #f8d7da;
         border: 2px solid #dc3545;
@@ -170,6 +169,8 @@ header {
 // CHARACTER GRID
 // ========================================
 .characters-section {
+    margin-top: 5px;
+    
     h2 {
         margin-bottom: 20px;
         text-align: center;
@@ -246,11 +247,13 @@ header {
 
 .character-traits {
     list-style: none;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
+    padding: 0;
     
-    li {
-        padding: 3px 0;
-        color: #7f8c8d;
+    .trait-item {
+        padding: 4px 0;
+        font-weight: 600;
+        transition: all 0.3s ease;
     }
 }
 
@@ -318,4 +321,54 @@ header {
     &:hover {
         background: #229954;
     }
+}
+
+// ========================================
+// GAME START ANIMATION
+// ========================================
+@keyframes flash {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 rgba(52, 152, 219, 0);
+    }
+    50% {
+        transform: scale(1.02);
+        box-shadow: 0 0 20px rgba(52, 152, 219, 0.6);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 rgba(52, 152, 219, 0);
+    }
+}
+
+.flash-animation {
+    animation: flash 1s ease;
+}
+
+// ========================================
+// TRAIT COLOR ANIMATION
+// ========================================
+@keyframes colorCycle {
+    0% {
+        color: #3498db;
+    }
+    20% {
+        color: #e74c3c;
+    }
+    40% {
+        color: #2ecc71;
+    }
+    60% {
+        color: #f39c12;
+    }
+    80% {
+        color: #9b59b6;
+    }
+    100% {
+        color: #1abc9c;
+    }
+}
+
+.trait-item.color-cycle {
+    animation: colorCycle 3s ease-in-out;
 }

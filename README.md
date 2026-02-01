@@ -207,6 +207,19 @@ Commit Link: https://github.com/nikomakr/Guess-Who-JS-Game/commit/abc6e8b12aa1a2
 - Hide mystery character from console
 - Balance all 24 characters (2+ options guaranteed)
 - Regenerate 4 avatars to match new traits
+Commit Link: https://github.com/nikomakr/Guess-Who-JS-Game/commit/3a5b3556b5648dacdae5b98ef9f14fbc87f76103
+10. Date: 01/02/2026 Commit Message: feat: Implement Guess Who game with more dynamic UI and more audio feedback
+
+- Added character card shuffling on each new game
+- Implemented trait colour cycling animation when questions are asked
+- Added sound effects for game start, YES/NO answers, win/lose outcomes
+- Displayed only present traits on character cards with random colours
+- Auto-sorted eliminated characters to bottom of grid
+- Updated UI spacing and layout for better visual hierarchy
+- Changed question buttons to light olive green theme
+- Centred "Ask a Question" heading and improved section spacing
+- Added flash animation on game initialisation for visual feedback
+- Implemented Fisher-Yates shuffle algorithm for random card order
 Commit Link: 
 
 ## License
