@@ -221,7 +221,19 @@ Commit Link: https://github.com/nikomakr/Guess-Who-JS-Game/commit/3a5b3556b5648d
 - Added flash animation on game initialisation for visual feedback
 - Implemented Fisher-Yates shuffle algorithm for random card order
 Commit Link: https://github.com/nikomakr/Guess-Who-JS-Game/commit/e185c5a791848457adbb0538aa290ec70bcc6c4f
-11. Date: 05/02/2026 Commit Message: Commit Link:
+11. Date: 05/02/2026 Commit Message: refactor: remove console.log statements and add section comments
+- Remove all debug console.log statements for production readiness
+- Add concise section comments to improve code documentation
+- Use professional terminology (Fisher-Yates, DOM manipulation, state management)
+- Maintain silent error handling for audio autoplay restrictions Commit Link: https://github.com/nikomakr/Guess-Who-JS-Game/commit/2b45b35e58b22895c062c3076f42dd7a3638119b
+12. Date: 05/02/2026 Commit Message: refactor: modernised code with functional patterns and helpers separation
+
+- Refactored trait HTML rendering to use functional approach (Object.entries/filter/map)
+- Extracted utility functions to helpers.js for better separation of concerns
+- Converted colour array to exported constant for reusability
+- Consolidated guard clauses in askQuestion() using DRY principle
+- Renamed 'answer' to 'hasTraitInMystery' for better semantic clarity
+- Implemented ES6 module system for cleaner code organisation Commit Link:
 
 ## License
 
