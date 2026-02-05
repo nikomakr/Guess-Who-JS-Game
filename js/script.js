@@ -1,3 +1,11 @@
+import {
+  TRAIT_MAP,
+  TRAIT_COLORS,
+  getRandomTraitColor,
+  shuffleArray,
+  SOUND_URLS,
+} from "./helpers.js";
+
 // Game state management
 const gameState = {
   mysteryCharacter: null,
@@ -22,55 +30,12 @@ const modalEliminated = document.getElementById("modal-eliminated");
 const playAgainBtn = document.getElementById("play-again");
 
 // Audio feedback system
-function playSound(type) {
-  const audio = new Audio();
-
-  if (type === "win") {
-    audio.src =
-      "https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3";
-  } else if (type === "lose") {
-    audio.src =
-      "https://assets.mixkit.co/active_storage/sfx/2955/2955-preview.mp3";
-  } else if (type === "start") {
-    audio.src =
-      "https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3";
-  } else if (type === "yes") {
-    audio.src =
-      "https://assets.mixkit.co/active_storage/sfx/2018/2018-preview.mp3";
-  } else if (type === "no") {
-    audio.src =
-      "https://assets.mixkit.co/active_storage/sfx/1864/1864-preview.mp3";
-  }
-
+function playSound(soundType) {
+  const audio = new Audio(SOUND_URLS[soundType]);
   audio.volume = 0.3;
-  audio.play().catch((err) => {
+  audio.play().catch(() => {
     // Silently handle autoplay restrictions
   });
-}
-
-// Random color generator for trait visual variety
-function getRandomTraitColor() {
-  const colors = [
-    "#3498db",
-    "#e74c3c",
-    "#2ecc71",
-    "#f39c12",
-    "#9b59b6",
-    "#1abc9c",
-    "#e67e22",
-    "#16a085",
-  ];
-  return colors[Math.floor(Math.random() * colors.length)];
-}
-
-// Fisher-Yates shuffle algorithm
-function shuffleArray(array) {
-  const shuffled = [...array];
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-  }
-  return shuffled;
 }
 
 // Character grid rendering with elimination state
@@ -111,23 +76,18 @@ function renderCharacters() {
       card.classList.add("eliminated");
     }
 
-    // Generate trait list with random colors
-    let traitsHTML = '<ul class="character-traits">';
-
-    if (character.traits.glasses) {
-      traitsHTML += `<li class="trait-item" style="color: ${getRandomTraitColor()}">Glasses</li>`;
-    }
-    if (character.traits.hat) {
-      traitsHTML += `<li class="trait-item" style="color: ${getRandomTraitColor()}">Hat</li>`;
-    }
-    if (character.traits.beard) {
-      traitsHTML += `<li class="trait-item" style="color: ${getRandomTraitColor()}">Beard</li>`;
-    }
-    if (character.traits.smile) {
-      traitsHTML += `<li class="trait-item" style="color: ${getRandomTraitColor()}">Smile</li>`;
-    }
-
-    traitsHTML += "</ul>";
+    // Generate trait list with random colors (modern functional approach)
+    const traitsHTML = `
+      <ul class="character-traits">
+        ${Object.entries(character.traits)
+          .filter(([key, value]) => value === true)
+          .map(
+            ([key]) =>
+              `<li class="trait-item" style="color: ${getRandomTraitColor()}">${TRAIT_MAP[key]}</li>`,
+          )
+          .join("")}
+      </ul>
+    `;
 
     card.innerHTML = `
       <div class="character-avatar">
@@ -209,18 +169,13 @@ function updateStats() {
 
 // Process trait-based question and filter characters
 function askQuestion(trait) {
-  // Prevent questions after game over
-  if (gameState.gameOver) {
-    return;
-  }
+  // DRY guard clauses for invalid states
+  const cannotAskQuestion =
+    gameState.gameOver ||
+    gameState.askedTraits.includes(trait) ||
+    gameState.questionsAsked >= gameState.maxQuestions;
 
-  // Prevent duplicate questions
-  if (gameState.askedTraits.includes(trait)) {
-    return;
-  }
-
-  // Enforce question limit
-  if (gameState.questionsAsked >= gameState.maxQuestions) {
+  if (cannotAskQuestion) {
     return;
   }
 
@@ -229,10 +184,10 @@ function askQuestion(trait) {
   gameState.askedTraits.push(trait);
 
   // Get answer from mystery character
-  const answer = gameState.mysteryCharacter.traits[trait];
+  const hasTraitInMystery = gameState.mysteryCharacter.traits[trait];
 
   // Filter characters based on answer
-  if (answer === true) {
+  if (hasTraitInMystery === true) {
     gameState.activeCharacters = gameState.activeCharacters.filter(
       (character) => character.traits[trait] === true,
     );
@@ -247,9 +202,9 @@ function askQuestion(trait) {
     characters.length - gameState.activeCharacters.length;
 
   // Provide audio and visual feedback
-  playSound(answer ? "yes" : "no");
+  playSound(hasTraitInMystery ? "yes" : "no");
   animateTraitColors(trait);
-  showFeedback(answer, trait);
+  showFeedback(hasTraitInMystery, trait);
 
   // Update UI
   updateStats();
@@ -259,14 +214,7 @@ function askQuestion(trait) {
 
 // Animate trait color cycling on question
 function animateTraitColors(trait) {
-  const traitMap = {
-    glasses: "Glasses",
-    hat: "Hat",
-    beard: "Beard",
-    smile: "Smile",
-  };
-
-  const traitText = traitMap[trait];
+  const traitText = TRAIT_MAP[trait];
 
   const allCards = document.querySelectorAll(
     ".character-card:not(.eliminated)",
@@ -304,7 +252,7 @@ function updateQuestionButtons() {
 }
 
 // Display YES/NO feedback message
-function showFeedback(answer, trait) {
+function showFeedback(hasTraitInMystery, trait) {
   const feedbackEl = document.getElementById("feedback");
 
   feedbackEl.classList.remove("show", "yes", "no");
@@ -316,14 +264,14 @@ function showFeedback(answer, trait) {
     smile: "smiling",
   };
 
-  const icon = answer ? "✅" : "❌";
-  const yesNo = answer ? "YES!" : "NO.";
-  const hasOrNot = answer ? "has" : "doesn't have";
+  const icon = hasTraitInMystery ? "✅" : "❌";
+  const yesNo = hasTraitInMystery ? "YES!" : "NO.";
+  const hasOrNot = hasTraitInMystery ? "has" : "doesn't have";
   const traitName = traitNames[trait] || trait;
 
   let message;
   if (trait === "smile") {
-    message = answer
+    message = hasTraitInMystery
       ? `${icon} ${yesNo} The mystery character is smiling.`
       : `${icon} ${yesNo} The mystery character is not smiling.`;
   } else {
@@ -332,7 +280,7 @@ function showFeedback(answer, trait) {
 
   feedbackEl.textContent = message;
 
-  feedbackEl.classList.add(answer ? "yes" : "no");
+  feedbackEl.classList.add(hasTraitInMystery ? "yes" : "no");
 
   setTimeout(() => {
     feedbackEl.classList.add("show");
