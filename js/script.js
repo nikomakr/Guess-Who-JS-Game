@@ -1,3 +1,4 @@
+// Game state management
 const gameState = {
   mysteryCharacter: null,
   questionsAsked: 0,
@@ -8,6 +9,7 @@ const gameState = {
   gameOver: false,
 };
 
+// DOM element references
 const characterGrid = document.getElementById("character-grid");
 const questionsAskedEl = document.getElementById("questions-asked");
 const charactersLeftEl = document.getElementById("characters-left");
@@ -19,6 +21,7 @@ const modalQuestions = document.getElementById("modal-questions");
 const modalEliminated = document.getElementById("modal-eliminated");
 const playAgainBtn = document.getElementById("play-again");
 
+// Audio feedback system
 function playSound(type) {
   const audio = new Audio();
 
@@ -41,10 +44,11 @@ function playSound(type) {
 
   audio.volume = 0.3;
   audio.play().catch((err) => {
-    console.log("Sound play failed:", err);
+    // Silently handle autoplay restrictions
   });
 }
 
+// Random color generator for trait visual variety
 function getRandomTraitColor() {
   const colors = [
     "#3498db",
@@ -59,6 +63,7 @@ function getRandomTraitColor() {
   return colors[Math.floor(Math.random() * colors.length)];
 }
 
+// Fisher-Yates shuffle algorithm
 function shuffleArray(array) {
   const shuffled = [...array];
   for (let i = shuffled.length - 1; i > 0; i--) {
@@ -68,11 +73,13 @@ function shuffleArray(array) {
   return shuffled;
 }
 
+// Character grid rendering with elimination state
 function renderCharacters() {
   characterGrid.innerHTML = "";
 
   const shuffledCharacters = shuffleArray(characters);
 
+  // Separate active and eliminated characters
   const activeChars = [];
   const eliminatedChars = [];
 
@@ -88,8 +95,10 @@ function renderCharacters() {
     }
   });
 
+  // Display active characters first, then eliminated
   const orderedCharacters = [...activeChars, ...eliminatedChars];
 
+  // Build character cards
   orderedCharacters.forEach((character) => {
     const card = document.createElement("div");
     card.className = "character-card";
@@ -102,6 +111,7 @@ function renderCharacters() {
       card.classList.add("eliminated");
     }
 
+    // Generate trait list with random colors
     let traitsHTML = '<ul class="character-traits">';
 
     if (character.traits.glasses) {
@@ -127,6 +137,7 @@ function renderCharacters() {
       ${traitsHTML}
     `;
 
+    // Enable guessing on active characters only
     card.addEventListener("click", () => {
       if (!isEliminated && !gameState.gameOver) {
         makeGuess(character);
@@ -137,6 +148,7 @@ function renderCharacters() {
   });
 }
 
+// Flash animation on game start/restart
 function showGameStartAnimation() {
   const statsBar = document.querySelector(".stats-bar");
   const questionSection = document.querySelector(".question-section");
@@ -153,60 +165,73 @@ function showGameStartAnimation() {
   }, 1000);
 }
 
+// Initialize or reset game state
 function initGame(playStartSound = false) {
+  // Select random mystery character
   const randomIndex = Math.floor(Math.random() * characters.length);
   gameState.mysteryCharacter = characters[randomIndex];
 
+  // Reset game state
   gameState.questionsAsked = 0;
   gameState.askedTraits = [];
   gameState.charactersEliminated = 0;
   gameState.activeCharacters = [...characters];
   gameState.gameOver = false;
 
+  // Update UI
   updateStats();
   renderCharacters();
 
+  // Reset question buttons
   questionButtons.forEach((button) => {
     button.disabled = false;
     button.classList.remove("asked");
     button.classList.remove("disabled");
   });
 
+  // Hide game over modal
   if (gameOverModal) {
     gameOverModal.classList.add("hidden");
   }
 
+  // Play start sound and animation
   if (playStartSound) {
     playSound("start");
   }
   showGameStartAnimation();
 }
 
+// Update stats display
 function updateStats() {
   questionsAskedEl.textContent = `${gameState.questionsAsked}/${gameState.maxQuestions}`;
   charactersLeftEl.textContent = gameState.activeCharacters.length;
 }
 
+// Process trait-based question and filter characters
 function askQuestion(trait) {
+  // Prevent questions after game over
   if (gameState.gameOver) {
     return;
   }
 
+  // Prevent duplicate questions
   if (gameState.askedTraits.includes(trait)) {
-    console.log("Question already asked!");
     return;
   }
 
+  // Enforce question limit
   if (gameState.questionsAsked >= gameState.maxQuestions) {
-    console.log("Maximum questions reached!");
     return;
   }
 
+  // Update question tracking
   gameState.questionsAsked++;
   gameState.askedTraits.push(trait);
 
+  // Get answer from mystery character
   const answer = gameState.mysteryCharacter.traits[trait];
 
+  // Filter characters based on answer
   if (answer === true) {
     gameState.activeCharacters = gameState.activeCharacters.filter(
       (character) => character.traits[trait] === true,
@@ -217,26 +242,22 @@ function askQuestion(trait) {
     );
   }
 
+  // Update elimination count
   gameState.charactersEliminated =
     characters.length - gameState.activeCharacters.length;
 
+  // Provide audio and visual feedback
   playSound(answer ? "yes" : "no");
-
   animateTraitColors(trait);
-
   showFeedback(answer, trait);
+
+  // Update UI
   updateStats();
   updateQuestionButtons();
   renderCharacters();
-
-  console.log(`Question asked: ${trait}`);
-  console.log(`Answer: ${answer ? "YES" : "NO"}`);
-  console.log(`Characters left: ${gameState.activeCharacters.length}`);
-  console.log(
-    `Questions remaining: ${gameState.maxQuestions - gameState.questionsAsked}`,
-  );
 }
 
+// Animate trait color cycling on question
 function animateTraitColors(trait) {
   const traitMap = {
     glasses: "Glasses",
@@ -265,6 +286,7 @@ function animateTraitColors(trait) {
   });
 }
 
+// Disable asked questions and enforce question limit
 function updateQuestionButtons() {
   questionButtons.forEach((button) => {
     const trait = button.getAttribute("data-trait");
@@ -281,6 +303,7 @@ function updateQuestionButtons() {
   });
 }
 
+// Display YES/NO feedback message
 function showFeedback(answer, trait) {
   const feedbackEl = document.getElementById("feedback");
 
@@ -320,6 +343,7 @@ function showFeedback(answer, trait) {
   }, 3000);
 }
 
+// Process final character guess
 function makeGuess(character) {
   if (gameState.gameOver) {
     return;
@@ -330,12 +354,9 @@ function makeGuess(character) {
   const isCorrect = character.id === gameState.mysteryCharacter.id;
 
   showGameOver(isCorrect, character);
-
-  console.log(`You guessed: ${character.name}`);
-  console.log(`Mystery was: ${gameState.mysteryCharacter.name}`);
-  console.log(`Correct: ${isCorrect}`);
 }
 
+// Display game over modal with results
 function showGameOver(isCorrect, guessedCharacter) {
   if (isCorrect) {
     modalTitle.textContent = "Bravo! You won!";
@@ -353,6 +374,7 @@ function showGameOver(isCorrect, guessedCharacter) {
   gameOverModal.classList.remove("hidden");
 }
 
+// Event listeners
 questionButtons.forEach((button) => {
   button.addEventListener("click", () => {
     const trait = button.getAttribute("data-trait");
@@ -364,4 +386,5 @@ playAgainBtn.addEventListener("click", () => {
   initGame(true);
 });
 
+// Initialize game on page load
 initGame(false);

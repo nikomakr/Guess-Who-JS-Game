@@ -220,7 +220,8 @@ Commit Link: https://github.com/nikomakr/Guess-Who-JS-Game/commit/3a5b3556b5648d
 - Centred "Ask a Question" heading and improved section spacing
 - Added flash animation on game initialisation for visual feedback
 - Implemented Fisher-Yates shuffle algorithm for random card order
-Commit Link: 
+Commit Link: https://github.com/nikomakr/Guess-Who-JS-Game/commit/e185c5a791848457adbb0538aa290ec70bcc6c4f
+11. Date: 05/02/2026 Commit Message: Commit Link:
 
 ## License
 
