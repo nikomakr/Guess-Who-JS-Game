@@ -1,7 +1,7 @@
 const characters = [
   {
     id: 1,
-    name: "Dimitris",
+    name: "Jay",
     emoji: "👨‍💼",
     avatarURL: "images/dimitris.jpeg",
     traits: {
@@ -13,7 +13,7 @@ const characters = [
   },
   {
     id: 2,
-    name: "Maria",
+    name: "Olivia",
     emoji: "👩‍🦰",
     avatarURL: "images/maria.jpeg",
     traits: {
@@ -25,7 +25,7 @@ const characters = [
   },
   {
     id: 3,
-    name: "Nikos",
+    name: "Jack",
     emoji: "👨‍🎨",
     avatarURL: "images/nikos.jpeg",
     traits: {
@@ -37,7 +37,7 @@ const characters = [
   },
   {
     id: 4,
-    name: "Sofia",
+    name: "Sarah",
     emoji: "👩‍🔬",
     avatarURL: "images/sofia.jpeg",
     traits: {
@@ -49,7 +49,7 @@ const characters = [
   },
   {
     id: 5,
-    name: "Giorgos",
+    name: "Logan",
     emoji: "👨‍🍳",
     avatarURL: "images/giorgos.jpeg",
     traits: {
@@ -61,7 +61,7 @@ const characters = [
   },
   {
     id: 6,
-    name: "Eleni",
+    name: "Fatima",
     emoji: "👩‍💻",
     avatarURL: "images/eleni.jpeg",
     traits: {
@@ -97,7 +97,7 @@ const characters = [
   },
   {
     id: 9,
-    name: "Panagiotis",
+    name: "Abdullah",
     emoji: "👨‍🔧",
     avatarURL: "images/panagiotis.jpeg",
     traits: {
@@ -109,7 +109,7 @@ const characters = [
   },
   {
     id: 10,
-    name: "Katerina",
+    name: "Nora",
     emoji: "👩‍🎤",
     avatarURL: "images/katerina.jpeg",
     traits: {
@@ -121,7 +121,7 @@ const characters = [
   },
   {
     id: 11,
-    name: "Yannis",
+    name: "Henry",
     emoji: "👨‍🚀",
     avatarURL: "images/yannis.jpeg",
     traits: {
@@ -133,7 +133,7 @@ const characters = [
   },
   {
     id: 12,
-    name: "Vasiliki",
+    name: "Layla",
     emoji: "👩‍⚖️",
     avatarURL: "images/vasiliki.jpeg",
     traits: {
@@ -145,7 +145,7 @@ const characters = [
   },
   {
     id: 13,
-    name: "Michalis",
+    name: "Steven",
     emoji: "👨‍🌾",
     avatarURL: "images/michalis.jpeg",
     traits: {
@@ -157,7 +157,7 @@ const characters = [
   },
   {
     id: 14,
-    name: "Despina",
+    name: "Chiamaka",
     emoji: "👩‍🎨",
     avatarURL: "images/despina.jpeg",
     traits: {
@@ -169,7 +169,7 @@ const characters = [
   },
   {
     id: 15,
-    name: "Alexandros",
+    name: "Gui",
     emoji: "👨‍🎓",
     avatarURL: "images/alexandros.jpeg",
     traits: {
@@ -181,7 +181,7 @@ const characters = [
   },
   {
     id: 16,
-    name: "Ioanna",
+    name: "Melati",
     emoji: "👩‍🔬",
     avatarURL: "images/ioanna.jpeg",
     traits: {
@@ -193,7 +193,7 @@ const characters = [
   },
   {
     id: 17,
-    name: "Christos",
+    name: "Cameron",
     emoji: "👨‍💻",
     avatarURL: "images/christos.jpeg",
     traits: {
@@ -205,7 +205,7 @@ const characters = [
   },
   {
     id: 18,
-    name: "Fotini",
+    name: "Maria",
     emoji: "👩‍🌾",
     avatarURL: "images/fotini.jpeg",
     traits: {
@@ -217,7 +217,7 @@ const characters = [
   },
   {
     id: 19,
-    name: "Stavros",
+    name: "Zahid",
     emoji: "👨‍🏫",
     avatarURL: "images/stavros.jpeg",
     traits: {
@@ -229,7 +229,7 @@ const characters = [
   },
   {
     id: 20,
-    name: "Antonia",
+    name: "Asha",
     emoji: "👩‍✈️",
     avatarURL: "images/antonia.jpeg",
     traits: {
@@ -241,7 +241,7 @@ const characters = [
   },
   {
     id: 21,
-    name: "Petros",
+    name: "Gabriel",
     emoji: "👨‍🚒",
     avatarURL: "images/petros.jpeg",
     traits: {
@@ -265,7 +265,7 @@ const characters = [
   },
   {
     id: 23,
-    name: "Andreas",
+    name: "Vladimir",
     emoji: "👨‍🎤",
     avatarURL: "images/andreas.jpeg",
     traits: {
@@ -277,7 +277,7 @@ const characters = [
   },
   {
     id: 24,
-    name: "Chrysa",
+    name: "Hoa",
     emoji: "👩‍🚒",
     avatarURL: "images/chrysa.jpeg",
     traits: {
